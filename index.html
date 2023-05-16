@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Vue.js 02</title>
+</head>
+<body>
+
+  <main class="grid">
+
+    <div >
+    <h1>Exercício 02 Origamid Módulo Vue.js</h1>
+    <img class="img1" src="imagens/exercicio02.png" alt="">
+    </div>
+    <div>
+    <h1> Resolução do Exercício 02 </h1>
+    <img src="imagens/resolução exercicio2.png" alt="">
+    </div>
+    <!-- Acerte o código abaixo -->
+    
+      <div id="quadrado">
+      <h1>Resolução no Browser </h1>
+      <div id="app">
+      
+     <p><span>Horario mais Recente:</span> {{acoes.latestTime}}</p>
+     <p><span>Preço Atual:$</span> {{acoes.latestPrice}}</p>
+     <p><span>Nome da Companhia:</span> {{acoes.companyName}}</p>
+     <button @click="puxarAcoes"> Puxar Ações </button>
+      </div>
+      </div>
+      </main>
+
+
+    <script>  
+    const vm = new Vue({
+    el: "#app" /*para selecionar o id*/,
+    data: {
+      acoes:{},
+    },
+    methods:{
+    puxarAcoes() {
+      fetch("https://api.origamid.dev/stock/aapl/quote")/*serve para consumir a Api*/
+      .then(response => response.json())
+        .then(json => {
+          this.acoes = json;
+          
+        })
+      }
+    }
+   })
+</script>
+
+<!--
+  Utilizando a API
+  https://api.origamid.dev/stock/aapl/quote
+
+  Crie um método que faça o fetch da resposta acima
+  O método deve ser ativado ao clique no botão Ver Preço
+
+  Coloque a resposta json do fetch em uma data e
+  mostre o valor de lalestPrice, latestTime e o
+  companyName na interface.
+-->
+
+  
+  <script>
+   
+  </script>
+
+</body>
+</html>
